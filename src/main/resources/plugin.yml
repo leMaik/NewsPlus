@@ -1,0 +1,3 @@
+name: NewsPlus
+main: de.craften.plugins.newsplus.NewsPlus
+version: VERSION
