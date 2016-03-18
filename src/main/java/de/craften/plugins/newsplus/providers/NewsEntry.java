@@ -1,5 +1,7 @@
 package de.craften.plugins.newsplus.providers;
 
+import java.util.Date;
+
 /**
  * A news entry.
  */
@@ -24,4 +26,11 @@ public interface NewsEntry {
      * @return the link of this entry
      */
     String getLink();
+
+    /**
+     * Get the date on which this news entry was published.
+     *
+     * @return the date on which this news entry was published
+     */
+    Date getDate();
 }

@@ -1,5 +1,6 @@
 package de.craften.plugins.newsplus.providers;
 
+import java.io.IOException;
 import java.util.Collection;
 
 /**
@@ -12,5 +13,5 @@ public interface NewsProvider {
      * @param count maximum number of news to get
      * @return latest news (may be more or less than <code>count</code>)
      */
-    Collection<NewsEntry> getLatestNews(int count);
+    Collection<NewsEntry> getLatestNews(int count) throws IOException;
 }
