@@ -1,6 +1,9 @@
 package de.craften.plugins.newsplus;
 
 import de.craften.plugins.newsplus.providers.RssFeedNewsProvider;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.net.MalformedURLException;
@@ -29,7 +32,23 @@ public class NewsPlus extends JavaPlugin {
                 String format = newsProviderConfig.get("format").toString();
                 long period = Long.parseLong(newsProviderConfig.get("interval").toString()) * 60 * 20;
 
-                new NewsBroadcaster(provider, count, format).runTaskTimerAsynchronously(this, 0, period);
+                final NewsBroadcaster broadcaster = new NewsBroadcaster(provider, count, format);
+                if (period > 0) {
+                    broadcaster.runTaskTimerAsynchronously(this, 0, period);
+                }
+                if (Boolean.valueOf(String.valueOf(newsProviderConfig.get("sendOnJoin"))) == Boolean.TRUE) {
+                    getServer().getPluginManager().registerEvents(new Listener() {
+                        @EventHandler
+                        public void onJoin(final PlayerJoinEvent event) {
+                            getServer().getScheduler().runTaskAsynchronously(NewsPlus.this, new Runnable() {
+                                @Override
+                                public void run() {
+                                    broadcaster.broadcastTo(event.getPlayer());
+                                }
+                            });
+                        }
+                    }, this);
+                }
             } else {
                 getLogger().warning("Unsupported news source type: " + newsProviderConfig.get("type"));
             }

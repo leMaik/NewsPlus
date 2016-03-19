@@ -17,6 +17,7 @@ news:
   format: "&f[&6NEWS&f] {{title}}" #format of news broadcast
   interval: 10 #interval (in minutes) to broadcast the news
   count: 3 #number of articles to broadcast every time
+  sendOnJoin: false #whether to send the news to players when they join (defaults to false)
 ```
 
 The following placeholders are available for the `format` option:
