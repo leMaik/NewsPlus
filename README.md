@@ -27,6 +27,14 @@ The following placeholders are available for the `format` option:
 | `{{link}}`    | the link to the news entry     |
 | `{{content}}` | the content of the news entry  |
 
+You don't really need the `{{link}}` placeholder though as players can simply click on broadcasted
+news to open the link in their browsers.
+
+
+## Planned features
+For now, broadcasting the news to all players is the only option.
+Later, it will be possible to put news on posters and signs.
+
 ## License
 GemPuzzle is licensed under the MIT license, see the [license file][license].
 
