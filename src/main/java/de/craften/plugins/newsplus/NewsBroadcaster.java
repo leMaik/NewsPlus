@@ -2,6 +2,10 @@ package de.craften.plugins.newsplus;
 
 import de.craften.plugins.newsplus.providers.NewsEntry;
 import de.craften.plugins.newsplus.providers.RssFeedNewsProvider;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -27,7 +31,12 @@ class NewsBroadcaster extends BukkitRunnable {
     public void run() {
         try {
             for (NewsEntry entry : provider.getLatestNews(count)) {
-                Bukkit.broadcastMessage(formatNewsEntry(format, entry));
+                TextComponent message = new TextComponent(TextComponent.fromLegacyText(formatNewsEntry(format, entry)));
+                if (entry.getLink() != null) {
+                    message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, entry.getLink()));
+                    message.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("Click to open in your browser.").create()));
+                }
+                Bukkit.spigot().broadcast(message);
             }
         } catch (IOException e) {
             NewsPlus.getPlugin(NewsPlus.class).getLogger().log(Level.WARNING, "Could not read news from feed", e);
