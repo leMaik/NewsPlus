@@ -1,1 +1,6 @@
-puzzles: []
+news:
+- type: "rss"
+  url: "http://example.com/feed"
+  format: "&f[&6NEWS&f] {{title}} &7{{link}}"
+  interval: 10
+  count: 3

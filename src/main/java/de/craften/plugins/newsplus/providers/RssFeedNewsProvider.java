@@ -39,46 +39,33 @@ public class RssFeedNewsProvider implements NewsProvider {
                 if (entries.size() <= i) {
                     break;
                 }
-                SyndEntry entry = entries.get(i);
-                newsEntries.add(new RssNewsEntry(entry));
+
+                final SyndEntry entry = entries.get(i);
+                newsEntries.add(new NewsEntry() {
+                    @Override
+                    public String getTitle() {
+                        return entry.getTitle();
+                    }
+
+                    @Override
+                    public String getContent() {
+                        return entry.getDescription().getValue();
+                    }
+
+                    @Override
+                    public String getLink() {
+                        return entry.getLink();
+                    }
+
+                    @Override
+                    public Date getDate() {
+                        return entry.getPublishedDate();
+                    }
+                });
             }
             return newsEntries;
         } catch (FeedException e) {
             throw new IOException("Could not fetch feed", e);
-        }
-    }
-
-    private static class RssNewsEntry implements NewsEntry {
-        private final String title;
-        private final String content;
-        private final String link;
-        private final Date date;
-
-        public RssNewsEntry(SyndEntry entry) {
-            title = entry.getTitle();
-            content = entry.getDescription().getValue();
-            link = entry.getLink();
-            date = entry.getPublishedDate();
-        }
-
-        @Override
-        public String getTitle() {
-            return title;
-        }
-
-        @Override
-        public String getContent() {
-            return content;
-        }
-
-        @Override
-        public String getLink() {
-            return link;
-        }
-
-        @Override
-        public Date getDate() {
-            return date;
         }
     }
 }
