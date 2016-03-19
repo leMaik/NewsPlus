@@ -36,6 +36,6 @@ For now, broadcasting the news to all players is the only option.
 Later, it will be possible to put news on posters and signs.
 
 ## License
-GemPuzzle is licensed under the MIT license, see the [license file][license].
+NewsPlus is licensed under the MIT license, see the [license file][license].
 
-[license]: https://github.com/leMaik/GemPuzzle/blob/master/LICENSE
+[license]: https://github.com/leMaik/NewsPlus/blob/master/LICENSE
