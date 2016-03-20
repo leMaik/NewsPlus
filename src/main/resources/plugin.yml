@@ -1,3 +1,11 @@
 name: NewsPlus
 main: de.craften.plugins.newsplus.NewsPlus
 version: VERSION
+commands:
+  news:
+    permission: newsplus.news
+    description: Show latest news.
+permissions:
+  newsplus.news:
+    default: true
+    description: Permission to use the /news command.

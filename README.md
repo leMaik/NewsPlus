@@ -31,6 +31,11 @@ The following placeholders are available for the `format` option:
 You don't really need the `{{link}}` placeholder though as players can simply click on broadcasted
 news to open the link in their browsers.
 
+## Commands and permissions
+
+| Command     | Permission (default)     | Description                                                                 |
+|-------------|--------------------------|-----------------------------------------------------------------------------|
+| `/news`     | `newsplus.news` (`true`) | Sends latest news of all news sources to the player that uses this command. |
 
 ## Planned features
 For now, broadcasting the news to all players is the only option.
